@@ -1,0 +1,206 @@
+---
+
+---
+
+<section id="about" class="section about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content">
+        <p class="section-title">// sobre mí</p>
+        <h2 class="section-heading">About me</h2>
+        <div class="about-text">
+          <p>
+            Soy estudiante de <strong>Ingeniería en Informática</strong> en mi último
+            año de carrera, con título de <strong
+              >Analista en Sistemas Informáticos</strong
+            >. Mi pasión se centra en la <strong>ciberseguridad</strong> y el análisis
+            de sistemas.
+          </p>
+          <p>
+            Durante mi formación he desarrollado proyectos en diversas
+            tecnologías, desde sistemas embebidos en C hasta aplicaciones web
+            modernas. Me interesa especialmente la seguridad en arquitecturas
+            distribuidas, análisis de vulnerabilidades y desarrollo de
+            herramientas de protección.
+          </p>
+          <p>
+            Tambien trabaje con infraestructura de sistemas complejos en linux,
+            como puesta en marcha de sistemas DNS usando bind, ecosistema de
+            mail interno de una empresa usando protocolos como SMTP y POP3 con
+            herramientas como Postfix, Dovecot y Roundcube.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-value">2020</span>
+            <span class="stat-label">Primer proyecto subido a git</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">35+</span>
+            <span class="stat-label">Proyectos en GitHub</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">10+</span>
+            <span class="stat-label">Tecnologías dominadas</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-title">profile.json</span>
+          </div>
+          <pre
+            class="code-content"><code><span class="bracket">&#123;</span>
+  <span class="key">"nombre"</span>: <span class="string">"Joaquín Cernik"</span>,
+  <span class="key">"titulo"</span>: <span class="string">"Ing. Informática"</span>,
+  <span class="key">"especialidad"</span>: <span class="string">"Ciberseguridad"</span>,
+  <span class="key">"experiencia"</span>: [
+    <span class="string">"Desarrollo Full Stack"</span>,
+    <span class="string">"Server monitoring"</span>,
+    <span class="string">"Infraestructura"</span>
+  ]
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg-secondary);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .about-text strong {
+    color: var(--text-primary);
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .code-block {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-muted);
+  }
+
+  .code-dot:nth-child(1) {
+    background: #ff5f57;
+  }
+  .code-dot:nth-child(2) {
+    background: #ffbd2e;
+  }
+  .code-dot:nth-child(3) {
+    background: #28c840;
+  }
+
+  .code-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+  }
+
+  .code-content {
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  .key {
+    color: var(--accent);
+  }
+  .string {
+    color: #a78bfa;
+  }
+  .bracket {
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 968px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-stats {
+      justify-content: center;
+    }
+
+    .code-block {
+      max-width: 500px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-stats {
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stat {
+      flex: 1 1 100px;
+    }
+  }
+</style>

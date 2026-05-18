@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import GitHubProjects from '../components/GitHubProjects.tsx';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout title="Joaquín Cernik | Portfolio">
+  <main>
+    <Hero />
+    <About />
+    <Skills />
+    <section id="projects" class="section projects">
+      <div class="container">
+        <p class="section-title">// proyectos</p>
+        <h2 class="section-heading">Proyectos en GitHub</h2>
+        <GitHubProjects 
+          client:visible 
+          username="joaquincernik"
+          pinnedRepos={[
+            'infraestructura-keycloak',
+            'MetodosNumericos',
+            'agape',
+            'tecnologiasMoviles',
+            'rgb_version_2'
+          ]}
+        />
+      </div>
+    </section>
+    <Experience />
+    <Education />
+    <Contact />
+  </main>
+</Layout>
+
+<style>
+  .projects {
+    background: var(--bg-primary);
+  }
+</style>

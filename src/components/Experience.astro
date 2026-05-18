@@ -1,0 +1,167 @@
+---
+const experience = [
+  {
+    title: "Analista en Sistemas Informáticos",
+    company: "Título Profesional",
+    period: "2020 - Presente",
+    description: "Título intermedio de la carrera de Ingeniería en Informática. Formación completa en análisis de sistemas, bases de datos, programación y arquitectura de software.",
+    tags: ["Análisis", "Diseño de Sistemas", "Bases de Datos", "UML"]
+  },
+  {
+    title: "Proyectos de Desarrollo Web",
+    company: "Freelance / Académico",
+    period: "2022 - Presente",
+    description: "Desarrollo de aplicaciones web full-stack para proyectos académicos y personales. Experiencia con múltiples frameworks y arquitecturas modernas.",
+    tags: ["React", "Vue.js", "Node.js", "PostgreSQL"]
+  },
+  {
+    title: "Infraestructura y DevOps",
+    company: "Proyectos Académicos",
+    period: "2023 - Presente",
+    description: "Implementación de soluciones de infraestructura usando Docker, contenedores, y servicios de autenticación como Keycloak para arquitecturas distribuidas.",
+    tags: ["Docker", "Keycloak", "Linux", "CI/CD"]
+  }
+];
+---
+
+<section id="experience" class="section experience">
+  <div class="container">
+    <p class="section-title">// experiencia</p>
+    <h2 class="section-heading">Trayectoria</h2>
+    
+    <div class="timeline">
+      {experience.map((exp, index) => (
+        <div class="timeline-item" data-index={index}>
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            {index < experience.length - 1 && <div class="marker-line"></div>}
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-title">{exp.title}</h3>
+              <span class="timeline-period">{exp.period}</span>
+            </div>
+            <p class="timeline-company">{exp.company}</p>
+            <p class="timeline-description">{exp.description}</p>
+            <div class="timeline-tags">
+              {exp.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  .marker-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+    box-shadow: 0 0 0 2px var(--accent);
+    flex-shrink: 0;
+  }
+
+  .marker-line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--accent), var(--border));
+    min-height: 40px;
+    margin: 8px 0;
+  }
+
+  .timeline-content {
+    padding-bottom: 3rem;
+    flex: 1;
+  }
+
+  .timeline-item:last-child .timeline-content {
+    padding-bottom: 0;
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .timeline-company {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .timeline-description {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-item {
+      gap: 1rem;
+    }
+
+    .timeline-header {
+      flex-direction: column;
+    }
+  }
+</style>
