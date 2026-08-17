@@ -35,6 +35,7 @@ const LANGUAGE_COLORS: Record<string, string> = {
 
 export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
   const [repos, setRepos] = useState<Repository[]>([]);
+  const [languagesMap, setLanguagesMap] = useState<Record<string, Record<string, number>>>({});
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pinned'>('all');
 
@@ -48,6 +49,21 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
           const data = await response.json();
           const nonForks = data.filter((repo: any) => !repo.fork && repo.name !== username);
           setRepos(nonForks);
+
+          const toFetch = nonForks.slice(0, 12);
+          const results = await Promise.allSettled(
+            toFetch.map((repo: any) =>
+              fetch(`https://api.github.com/repos/${username}/${repo.name}/languages`)
+                .then((res) => (res.ok ? res.json() : {}))
+            )
+          );
+          const map: Record<string, Record<string, number>> = {};
+          results.forEach((result, index) => {
+            if (result.status === 'fulfilled' && Object.keys(result.value).length > 0) {
+              map[toFetch[index].name] = result.value;
+            }
+          });
+          setLanguagesMap(map);
         }
       } catch (error) {
         console.error('Failed to fetch repos:', error);
@@ -69,6 +85,14 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
 
   const getLanguageColor = (lang: string | null) => {
     return LANGUAGE_COLORS[lang || ''] || '#6e7681';
+  };
+
+  const getRepoLanguages = (repoName: string): [string, number][] => {
+    const langs = languagesMap[repoName];
+    if (!langs) return [];
+    return Object.entries(langs)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3);
   };
 
   const formatRepoName = (name: string) => {
@@ -150,15 +174,29 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
               </p>
 
               <div className="repo-meta">
-                {repo.language && (
-                  <span className="repo-language">
-                    <span
-                      className="language-dot"
-                      style={{ backgroundColor: getLanguageColor(repo.language) }}
-                    />
-                    {repo.language}
-                  </span>
-                )}
+                {(() => {
+                  const langs = getRepoLanguages(repo.name);
+                  if (langs.length > 0) {
+                    return langs.map(([lang]) => (
+                      <span key={lang} className="repo-language">
+                        <span
+                          className="language-dot"
+                          style={{ backgroundColor: getLanguageColor(lang) }}
+                        />
+                        {lang}
+                      </span>
+                    ));
+                  }
+                  return repo.language && (
+                    <span className="repo-language">
+                      <span
+                        className="language-dot"
+                        style={{ backgroundColor: getLanguageColor(repo.language) }}
+                      />
+                      {repo.language}
+                    </span>
+                  );
+                })()}
                 {repo.stargazers_count > 0 && (
                   <span className="repo-stars">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">

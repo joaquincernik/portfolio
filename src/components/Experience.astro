@@ -4,23 +4,26 @@ const experience = [
     title: "Systems Analyst",
     company: "Professional Degree",
     period: "2020 - Present",
-    description: "Intermediate degree in Computer Science Engineering. Comprehensive training in systems analysis, databases, programming, and software architecture.",
-    tags: ["Analysis", "Systems Design", "Databases", "UML"]
+    description:
+      "Intermediate degree in Computer Science Engineering. Comprehensive training in systems analysis, databases, programming, and software architecture.",
+    tags: ["Analysis", "Systems Design", "Databases", "UML"],
   },
   {
     title: "Web Development Projects",
     company: "Freelance / Academic",
     period: "2022 - Present",
-    description: "Full-stack web application development for academic and personal projects. Experience with multiple frameworks and modern architectures.",
-    tags: ["React", "Vue.js", "Node.js", "PostgreSQL"]
+    description:
+      "Full-stack web application development for academic and personal projects. Experience with multiple frameworks and modern architectures.",
+    tags: ["React", "Vue.js", "Node.js", "PostgreSQL"],
   },
   {
     title: "Infrastructure & DevOps",
     company: "Academic Projects",
     period: "2023 - Present",
-    description: "Implementation of infrastructure solutions using Docker, containers, and authentication services like Keycloak for distributed architectures.",
-    tags: ["Docker", "Keycloak", "Linux", "CI/CD"]
-  }
+    description:
+      "Implementation of infrastructure solutions using Docker, containers, and authentication services like Keycloak for distributed architectures.",
+    tags: ["Docker", "Keycloak", "Linux", "CI/CD"],
+  },
 ];
 ---
 
@@ -28,29 +31,35 @@ const experience = [
   <div class="container">
     <p class="section-title">// experience</p>
     <h2 class="section-heading">Experience</h2>
-    
+    <h3 class="section-description">
+      Since the age of 19, I have successfully delivered a wide range of IT
+      solutions for diverse clients.
+    </h3>
+
     <div class="timeline">
-      {experience.map((exp, index) => (
-        <div class="timeline-item" data-index={index}>
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-            {index < experience.length - 1 && <div class="marker-line"></div>}
-          </div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3 class="timeline-title">{exp.title}</h3>
-              <span class="timeline-period">{exp.period}</span>
+      {
+        experience.map((exp, index) => (
+          <div class="timeline-item" data-index={index}>
+            <div class="timeline-marker">
+              <div class="marker-dot" />
+              {index < experience.length - 1 && <div class="marker-line" />}
             </div>
-            <p class="timeline-company">{exp.company}</p>
-            <p class="timeline-description">{exp.description}</p>
-            <div class="timeline-tags">
-              {exp.tags.map(tag => (
-                <span class="tag">{tag}</span>
-              ))}
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3 class="timeline-title">{exp.title}</h3>
+                <span class="timeline-period">{exp.period}</span>
+              </div>
+              <p class="timeline-company">{exp.company}</p>
+              <p class="timeline-description">{exp.description}</p>
+              <div class="timeline-tags">
+                {exp.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
