@@ -84,7 +84,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <p>Cargando proyectos...</p>
+        <p>Loading projects...</p>
         <style>{loadingStyles}</style>
       </div>
     );
@@ -99,7 +99,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
           className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
         >
-          Todos
+          All
         </button>
         <button
           className={`filter-btn ${filter === 'pinned' ? 'active' : ''}`}
@@ -119,8 +119,8 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
           </div>
-          <h3>No hay repositorios configurados</h3>
-          <p>Editá <code>src/pages/index.astro</code> y agregá tus repos favoritos en <code>pinnedRepos</code></p>
+          <h3>No repositories configured</h3>
+          <p>Edit <code>src/pages/index.astro</code> and add your favorite repos in <code>pinnedRepos</code></p>
           <div className="empty-example">
             <code>&lt;GitHubProjects pinnedRepos=&#123;['repo1', 'repo2', 'repo3']&#125; /&gt;</code>
           </div>
@@ -146,7 +146,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
               </div>
               
               <p className="repo-description">
-                {repo.description || 'Sin descripción disponible'}
+                {repo.description || 'No description available'}
               </p>
 
               <div className="repo-meta">
@@ -169,6 +169,14 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
                 )}
               </div>
 
+              {repo.topics.length > 0 && (
+                <div className="repo-topics">
+                  {repo.topics.map((topic) => (
+                    <span key={topic} className="topic-tag">{topic}</span>
+                  ))}
+                </div>
+              )}
+
               <div className="repo-arrow">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -185,7 +193,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
         rel="noopener noreferrer"
         className="view-all-link"
       >
-        Ver todos los proyectos en GitHub
+        View all projects on GitHub
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
@@ -338,6 +346,23 @@ const styles = `
     align-items: center;
     gap: 0.25rem;
     color: #fbbf24;
+  }
+
+  .repo-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  .topic-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
   }
 
   .repo-arrow {
