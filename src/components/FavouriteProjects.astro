@@ -42,7 +42,8 @@ const projects = [
     tags: ["DNS", "DHCP", "Linux", "Networking"],
   },
   {
-    title: "SIEM Deployment, Hardening & Multi-Platform Log Centralization (Graylog)",
+    title:
+      "SIEM Deployment, Hardening & Multi-Platform Log Centralization (Graylog)",
     description: [
       "Deployed and optimized a Graylog SIEM (Security Information and Event Management) infrastructure to centralize security event collection and enable proactive monitoring across a heterogeneous enterprise environment",
       "The project focused on platform hardening, log ingestion, and automated incident alerting to improve visibility and overall cybersecurity posture",
@@ -50,6 +51,20 @@ const projects = [
     link: `${base}reports/ti2-auditoria.pdf`,
     linkType: "pdf",
     tags: ["SIEM", "Cibersecurity", "Graylog", "VM"],
+  },
+  {
+    title:
+      "Web3 Proposal Management dApp with On-Chain ENS Identity & ERC-20 Escrow System",
+    description: [
+      "Developed a multi-tier Web3 solution for managing public calls for proposals with on-chain financial guarantees:",
+      "Smart Contracts (Solidity & Hardhat): Architected the CFPFactory contract, an ERC-20 token contract with fixed-rate ETH exchange capabilities, and a full ENS suite (Registry, FIFS Registrars, and Resolvers) enabling on-chain identity verification and domain collision handling.",
+      "Tokenomics & Escrow Logic: Implemented both standard proposal submissions and collateralized bids requiring ERC-20 token deposits, alongside pull-mechanism refund claims upon proposal finalization",
+      "Off-Chain API & Frontend: Developed a REST API for off-chain metadata processing and a responsive web frontend integrated with MetaMask for domain registration, token swaps, and contract interactions",
+      "DevOps & Testing: Implemented automated Hardhat deployment scripts (npm run deploy) with explicit environment variable outputs for API/Web integration, backed by thorough test suites",
+    ],
+    link: `https://github.com/joaquincernik/blockchain/tree/master/TP/Final`,
+    linkType: "repo",
+    tags: ["Blockchain", "web3", "metamask", "hardhat"],
   },
 ];
 ---
