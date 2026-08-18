@@ -43,7 +43,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
     async function fetchRepos() {
       try {
         const response = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=updated&per_page=30&type=public`
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=9&type=public`
         );
         if (response.ok) {
           const data = await response.json();
@@ -125,15 +125,7 @@ export default function GitHubProjects({ username, pinnedRepos = [] }: Props) {
         >
           All
         </button>
-        <button
-          className={`filter-btn ${filter === 'pinned' ? 'active' : ''}`}
-          onClick={() => setFilter('pinned')}
-        >
-          Pinned
-          {pinnedRepos.length > 0 && (
-            <span className="pinned-count">{pinnedRepos.length}</span>
-          )}
-        </button>
+       
       </div>
 
       {filteredRepos.length === 0 && filter === 'pinned' ? (

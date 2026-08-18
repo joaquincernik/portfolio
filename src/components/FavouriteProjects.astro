@@ -6,6 +6,7 @@ const projects = [
   {
     title:
       "Enterprise Network Segmentation & Advanced Linux Firewalling (iptables)",
+    labels: ["cibersecurity", "infrastructure"],
     description: [
       "Designed and deployed a secure, production-grade network architecture from scratch in a Linux environment",
       "Implemented stateful firewalling with iptables, NAT/MASQUERADE rules, and strict traffic isolation policies",
@@ -18,6 +19,7 @@ const projects = [
   },
   {
     title: "Full-Stack Enterprise Mail Infrastructure & DNS Implementation",
+    labels: ["infrastructure"],
     description: [
       "Deployed Postfix as MTA with MX record routing and configured Dovecot as MDA supporting IMAP4 and POP3 protocols",
       "Built a Roundcube webmail solution on a LAMP stack (Apache, MariaDB, PHP) with system user authentication",
@@ -31,6 +33,7 @@ const projects = [
   {
     title:
       "Core Network Infrastructure: Automated DHCP, Caching DNS & Authoritative Multi-Node Architecture",
+    labels: ["infrastructure"],
     description: [
       "Configured automated Layer 2 dynamic IP allocation through ISC dhcpd with defined address pools and lease policies",
       "Built a high-performance BIND DNS infrastructure with caching/forwarding resolvers and authoritative primary/secondary zones",
@@ -44,6 +47,7 @@ const projects = [
   {
     title:
       "SIEM Deployment, Hardening & Multi-Platform Log Centralization (Graylog)",
+    labels: ["cibersecurity"],
     description: [
       "Deployed and optimized a Graylog SIEM (Security Information and Event Management) infrastructure to centralize security event collection and enable proactive monitoring across a heterogeneous enterprise environment",
       "The project focused on platform hardening, log ingestion, and automated incident alerting to improve visibility and overall cybersecurity posture",
@@ -55,6 +59,7 @@ const projects = [
   {
     title:
       "Web3 Proposal Management dApp with On-Chain ENS Identity & ERC-20 Escrow System",
+    labels: ["cibersecurity"],
     description: [
       "Developed a multi-tier Web3 solution for managing public calls for proposals with on-chain financial guarantees:",
       "Smart Contracts (Solidity & Hardhat): Architected the CFPFactory contract, an ERC-20 token contract with fixed-rate ETH exchange capabilities, and a full ENS suite (Registry, FIFS Registrars, and Resolvers) enabling on-chain identity verification and domain collision handling.",
@@ -65,6 +70,38 @@ const projects = [
     link: `https://github.com/joaquincernik/blockchain/tree/master/TP/Final`,
     linkType: "repo",
     tags: ["Blockchain", "web3", "metamask", "hardhat"],
+  },
+  {
+    title:
+      "Multi-Node Face Recognition and Object Detection Platform with IAM & Observability Stack",
+    labels: ["infrastructure"],
+    description: [
+      "Enterprise Computer Vision & Microservices Stack",
+      "Orchestration & Infrastructure: Containerized multi-tier backend setup using Docker Compose, Nginx reverse proxying, and SSL encryption (Let's Encrypt)",
+      "Identity & Security: Integrated Keycloak OIDC/OAuth2 authorization layer with custom realm configurations, proxy headers (X-Forwarded-*), and CORS preflight handling",
+      "Computer Vision & Pipelines: Deployed Node-RED workflow nodes alongside dedicated Python/FastAPI microservices running object detection (YOLO) and facial embedding engines over private internal networks",
+      "Data Management & Observability: Structured MySQL persistence alongside SeaweedFS object storage, complemented by an InfluxDB + Telegraf + Grafana observability pipeline tracking system metrics and inference response times",
+    ],
+    link: `https://github.com/joaquincernik/infraestructura-computer-vision-soa`,
+    linkType: "repo",
+    tags: ["YOLO", "face-recognition", "server-monitoring", "SDN", "distributed-systems"],
+  },
+  {
+    title:
+      "IoT Edge Device Firmware and Backend System Topology",
+    labels: ["low-level", "infrastructure"],
+    description: [
+      "Architecture: IoT Edge-to-Cloud telemetry and vision pipeline featuring embedded firmware and microservices. Repo infra: https://github.com/joaquincernik/str-final-infraestructura",
+      "Edge Node (ESP32-CAM): Captures motion events, captures VGA JPEGs, samples electrical telemetry (RMS + EMA), and operates a relay output",
+      "Ingress & Security (Nginx): Acts as the primary API gateway, handling reverse proxying, path-based routing (/foto), and SSL/TLS termination",
+      "Orchestration & Logic (Node-RED): Ingests multi-part HTTP payloads, processes MQTT streams, handles DB persistence, and triggers downstream control commands",
+      "Object Storage (SeaweedFS): High-throughput distributed blob storage optimized for small image persistence (JPEG payloads)",
+      "Observability (Grafana): Presentation layer for real-time time-series telemetry, door event tracking, and alert dispatching",
+      "Firmware repo: https://github.com/joaquincernik/str-final"
+    ],
+    link: `${base}reports/Trabajo Integrador Grupo 8.pdf`,
+    linkType: "pdf",
+    tags: ["FreeRTOS", "real-time-system", "monitoring", "esp32-cam", "mqtt", "node-red"],
   },
 ];
 ---
@@ -78,6 +115,14 @@ const projects = [
       {
         projects.map((project) => (
           <div class="project-card">
+            {project.labels && project.labels.length > 0 && (
+              <div class="project-labels">
+                {project.labels.map((label) => (
+                  <span class={`project-label label-${label}`}>{label}</span>
+                ))}
+              </div>
+            )}
+
             <ul class="project-description">
               {project.description.map((item) => (
                 <li>{item}</li>
@@ -174,6 +219,7 @@ const projects = [
   }
 
   .project-card {
+    position: relative;
     background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -187,6 +233,42 @@ const projects = [
   .project-card:hover {
     border-color: var(--accent);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .project-labels {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .project-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .label-low-level {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+
+  .label-cibersecurity {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.15);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+  }
+
+  .label-infrastructure {
+    color: #ff8800;
+    background: rgba(255, 136, 0, 0.15);
+    border: 1px solid rgba(255, 136, 0, 0.3);
   }
 
   .project-description {
